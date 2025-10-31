@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const services = [
+  {
+    icon: "💡",
+    title: "Innovación & Estrategia",
+    desc: "Diseño de soluciones que potencian la transformación digital y organizacional."
+  },
+  {
+    icon: "👥",
+    title: "Gestión del Talento",
+    desc: "Desarrollamos capacidades y liderazgo para equipos de alto rendimiento."
+  },
+  {
+    icon: "⚙️",
+    title: "Tecnologías para el Desarrollo",
+    desc: "Implementación de herramientas que optimizan procesos y productividad."
+  }
+];
+---
+<BaseLayout title="Servicios - i4D">
+  <Fragment slot="header"><Header /></Fragment>
+
+  <section class="py-24 bg-soft">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-dark mb-12" data-aos="fade-up">
+        Nuestros Servicios
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {services.map((s, i) => (
+          <div
+            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition"
+            data-aos="fade-up"
+            data-aos-delay={i * 150}
+          >
+            <div class="text-6xl mb-6">{s.icon}</div>
+            <h3 class="text-2xl font-bold text-dark mb-4">{s.title}</h3>
+            <p class="text-medium leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

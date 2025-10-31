@@ -1,0 +1,65 @@
+---
+const { title = "i4D - Ideas for Development" } = Astro.props;
+import "../styles/global.css";
+---
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content="i4D — Innovación, gestión del talento y tecnologías para el desarrollo. Transformamos ideas en soluciones para organizaciones." />
+
+    <!-- SEO + Social -->
+    <meta property="og:title" content="i4D - Ideas for Development" />
+    <meta property="og:description" content="Soluciones para potenciar el talento, la tecnología y la gestión del cambio en organizaciones." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://i4d-la.com" />
+    <meta property="og:image" content="/logo.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+  </head>
+  <body class="flex flex-col min-h-screen">
+
+    <slot name="header" />
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <slot name="footer" />
+
+   <!-- AOS Script -->
+  <script>
+    import AOS from "aos";
+    import "aos/dist/aos.css";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      AOS.init({
+        duration: 800,
+        easing: "ease-out-quart",
+      });
+    });
+  </script>
+<a
+  href="https://wa.me/549XXXXXXXXXX"
+  class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg text-xl hover:scale-110 transition"
+  target="_blank"
+  aria-label="WhatsApp"
+>
+  💬
+</a>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("loaded");
+  });
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Acerca de - i4D">
+  <Fragment slot="header"><Header /></Fragment>
+
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+      <h2 class="text-4xl font-bold text-dark mb-6">Acerca de i4D</h2>
+
+      <p class="text-lg text-medium leading-relaxed mb-4">
+        i4D – Ideas for Development es una organización dedicada a promover soluciones
+        innovadoras para el desarrollo del talento, la tecnología y la gestión del cambio.
+      </p>
+
+      <p class="text-lg text-medium leading-relaxed mb-4">
+        Acompañamos a empresas e instituciones en la construcción de estrategias que potencien la
+        colaboración, la productividad y la transformación organizacional.
+      </p>
+
+      <p class="text-lg text-medium leading-relaxed">
+        Nuestro propósito es impulsar la evolución del capital humano, la gestión y los procesos,
+        generando un impacto positivo en la organización y la sociedad.
+      </p>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

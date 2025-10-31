@@ -1,0 +1,41 @@
+---
+const team = [
+  {
+    name: "María López",
+    role: "Directora de Gestión del Talento",
+    img: "https://via.placeholder.com/300x300.png?text=Persona+1"
+  },
+  {
+    name: "Juan Pérez",
+    role: "Líder de Innovación",
+    img: "https://via.placeholder.com/300x300.png?text=Persona+2"
+  },
+  {
+    name: "Carla Gómez",
+    role: "Especialista en Tecnología Educativa",
+    img: "https://via.placeholder.com/300x300.png?text=Persona+3"
+  }
+];
+---
+
+<section class="py-24 bg-soft">
+  <div class="container mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-12" data-aos="fade-up">
+      Nuestro Equipo
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {team.map((person, i) => (
+        <div
+          class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition"
+          data-aos="fade-up"
+          data-aos-delay={i * 150}
+        >
+          <img src={person.img} alt={person.name} class="mx-auto rounded-full w-40 h-40 object-cover mb-6" />
+          <h3 class="text-xl font-bold text-dark">{person.name}</h3>
+          <p class="text-medium mt-2">{person.role}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Talent Technologies - i4D">
+  <Fragment slot="header"><Header /></Fragment>
+
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-right">
+      <h2 class="text-4xl font-bold text-dark mb-6">
+        Talent Technologies
+      </h2>
+
+      <p class="text-lg text-medium leading-relaxed mb-4">
+        Acompañamos la evolución de la fuerza laboral mediante tecnologías que potencian el aprendizaje,
+        la formación y la gestión moderna del talento humano.
+      </p>
+
+      <p class="text-lg text-medium leading-relaxed">
+        Incorporamos plataformas inteligentes y procesos colaborativos que permiten una gestión más ágil 
+        y efectiva del conocimiento dentro de las organizaciones.
+      </p>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>

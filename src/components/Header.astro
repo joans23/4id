@@ -1,0 +1,51 @@
+---
+const menuItems = [
+  { label: "Inicio", href: "/" },
+  { label: "Acerca de", href: "/acerca-de" },
+  { label: "Servicios", href: "/servicios" },
+  { label: "Talent Technologies", href: "/talent-technologies" },
+  { label: "Contacto", href: "/contacto" },
+];
+---
+
+<header class="bg-white shadow-lg">
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/">
+      <img src="/logo.png" alt="i4D" class="h-10" />
+    </a>
+
+    <!-- Desktop menu -->
+    <nav class="hidden md:flex gap-6 font-semibold text-dark">
+      {menuItems.map((item) => (
+        <a href={item.href} class="hover:text-[var(--color-primary)] transition">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile button -->
+    <button id="mobile-menu-button" class="md:hidden text-dark text-2xl">
+      ☰
+    </button>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <nav id="mobile-menu" class="hidden md:hidden bg-white border-t shadow">
+    {menuItems.map((item) => (
+      <a href={item.href} class="block px-6 py-3 border-b hover:bg-soft transition">
+        {item.label}
+      </a>
+    ))}
+  </nav>
+
+  <script>
+    const btn = document.getElementById("mobile-menu-button");
+    const menu = document.getElementById("mobile-menu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+</header>

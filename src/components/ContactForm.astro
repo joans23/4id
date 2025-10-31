@@ -1,0 +1,79 @@
+<form id="contact-form" class="max-w-lg mx-auto bg-white shadow-lg p-8 rounded-lg" data-aos="fade-up">
+  <h2 class="text-3xl font-bold text-dark mb-6 text-center">Contáctanos</h2>
+
+  <label class="block mb-4">
+    <span class="text-dark font-semibold">Nombre*</span>
+    <input type="text" name="nombre" required
+      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]" />
+  </label>
+
+  <label class="block mb-4">
+    <span class="text-dark font-semibold">Email*</span>
+    <input type="email" name="email" required
+      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]" />
+  </label>
+
+  <label class="block mb-6">
+    <span class="text-dark font-semibold">Mensaje*</span>
+    <textarea name="mensaje" required rows="5"
+      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]"></textarea>
+  </label>
+
+  <button type="submit"
+    class="bg-[var(--color-primary)] w-full text-white py-3 font-semibold rounded-lg hover:opacity-90 transition">
+    Enviar Mensaje
+  </button>
+</form>
+
+<!-- Modal -->
+<div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-xl shadow-xl p-8 text-center max-w-sm mx-4" data-aos="zoom-in">
+    <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
+    <p id="modal-text" class="text-medium mb-6"></p>
+    <button id="modal-close"
+      class="bg-[var(--color-primary)] px-6 py-2 text-white font-semibold rounded-lg hover:opacity-90 transition">
+      Cerrar
+    </button>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("contact-form");
+  const modal = document.getElementById("modal");
+  const modalTitle = document.getElementById("modal-title");
+  const modalText = document.getElementById("modal-text");
+  const closeBtn = document.getElementById("modal-close");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/sendmail.php", {
+        method: "POST",
+        body: formData
+      });
+
+      const text = await res.text();
+
+      if (text.includes("OK")) {
+        modalTitle.textContent = "✅ ¡Mensaje enviado!";
+        modalText.textContent = "Gracias por contactarte. Te responderemos a la brevedad.";
+      } else {
+        modalTitle.textContent = "⚠️ Error al enviar";
+        modalText.textContent = "Por favor, intentá nuevamente más tarde.";
+      }
+    } catch (error) {
+      modalTitle.textContent = "⚠️ Error de conexión";
+      modalText.textContent = "No se pudo contactar al servidor.";
+    }
+
+    modal.classList.remove("hidden");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    form.reset();
+  });
+</script>
