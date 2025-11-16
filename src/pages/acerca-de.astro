@@ -2,29 +2,78 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const team = [
+  {
+    name: "Jorge Contenti",
+    role: "Director",
+    linkedin: "https://www.linkedin.com/in/jorgecontenti/?originalSubdomain=ar",
+    img: "/team/jorge.jpg"  // opcional, después la cargás
+  },
+  {
+    name: "Sonia Weiss",
+    role: "Project Leader",
+    linkedin: "https://www.linkedin.com/in/sonia-weiss/",
+    img: "/team/sonia.jpg"
+  },
+  {
+    name: "Belén Herrera",
+    role: "Project Leader",
+    linkedin: "https://www.linkedin.com/in/bel%C3%A9n-herrera-535a671a/",
+    img: "/team/belen.jpg"
+  }
+];
 ---
 
 <BaseLayout title="Acerca de - i4D">
   <Fragment slot="header"><Header /></Fragment>
 
+  <!-- HERO -->
+  <section class="py-24 bg-soft text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">Nosotros</h1>
+    <p class="text-lg text-dark/70 max-w-2xl mx-auto">
+      Un equipo especializado en gestión del talento, desarrollo organizacional e innovación aplicada.
+    </p>
+  </section>
+
+  <!-- DESCRIPCIÓN -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-4xl text-center" data-aos="fade-up">
+
+      <p class="text-lg text-dark/75 leading-relaxed">
+        i4D es una red de profesionales especializados en la gestión del talento humano y el desarrollo organizacional. 
+        Estamos comprometidos con la investigación —tanto científica como aplicada— y con la creación de soluciones 
+        que agregan valor a la gestión de las personas y al desempeño del negocio.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
   <section class="py-24 bg-white">
-    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
-      <h2 class="text-4xl font-bold text-dark mb-6">Acerca de i4D</h2>
+    <div class="container mx-auto px-6">
 
-      <p class="text-lg text-medium leading-relaxed mb-4">
-        i4D – Ideas for Development es una organización dedicada a promover soluciones
-        innovadoras para el desarrollo del talento, la tecnología y la gestión del cambio.
-      </p>
+      <h2 class="text-3xl font-bold text-dark text-center mb-12">Nuestro Equipo</h2>
 
-      <p class="text-lg text-medium leading-relaxed mb-4">
-        Acompañamos a empresas e instituciones en la construcción de estrategias que potencien la
-        colaboración, la productividad y la transformación organizacional.
-      </p>
+      <div class="grid md:grid-cols-3 gap-12">
+        {team.map((p) => (
+          <div class="bg-soft p-8 rounded-xl shadow-sm text-center hover:shadow-md transition" data-aos="fade-up">
 
-      <p class="text-lg text-medium leading-relaxed">
-        Nuestro propósito es impulsar la evolución del capital humano, la gestión y los procesos,
-        generando un impacto positivo en la organización y la sociedad.
-      </p>
+            <img src={p.img} alt={p.name} 
+                 class="w-32 h-32 mx-auto rounded-full object-cover mb-6 border border-gray-200"
+                 onerror="this.src='/placeholder-user.png'" />
+
+            <h3 class="text-xl font-bold text-dark">{p.name}</h3>
+            <p class="text-dark/60 mb-4">{p.role}</p>
+
+            <a href={p.linkedin} target="_blank" class="inline-block text-[var(--color-primary)] text-2xl hover:scale-110 transition">
+              🔗
+            </a>
+
+          </div>
+        ))}
+      </div>
+
     </div>
   </section>
 

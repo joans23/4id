@@ -2,28 +2,108 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import tools from "../data/talent-technologies.json";
+
 ---
 
-<BaseLayout title="Talent Technologies - i4D">
-  <Fragment slot="header"><Header /></Fragment>
+<BaseLayout title="Talent Technologies – i4D">
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
 
-  <section class="py-24 bg-white">
-    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-right">
-      <h2 class="text-4xl font-bold text-dark mb-6">
-        Talent Technologies
-      </h2>
+  <!-- BANNER FULL WIDTH SIN OVERLAY -->
+  <section class="w-full h-[380px] md:h-[480px] lg:h-[520px] overflow-hidden">
+    <img 
+      src="/services/technology-banner.jpg" 
+      alt="Talent Technologies Banner"
+      class="w-full h-full object-cover"
+    />
+  </section>
 
-      <p class="text-lg text-medium leading-relaxed mb-4">
-        Acompañamos la evolución de la fuerza laboral mediante tecnologías que potencian el aprendizaje,
-        la formación y la gestión moderna del talento humano.
+  <!-- INTRO -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+
+      <h1 class="text-4xl font-bold text-dark mb-6">Talent Technologies</h1>
+
+      <p class="text-lg text-dark/70 leading-relaxed mb-6">
+        Combinamos más de 30 años de experiencia en evaluación del talento con herramientas digitales avanzadas. 
+        Nuestros diagnósticos online permiten identificar competencias, estilos de liderazgo, potencial y capacidades 
+        críticas, reduciendo tiempos y costos y brindando información estratégica para la toma de decisiones.
       </p>
 
-      <p class="text-lg text-medium leading-relaxed">
-        Incorporamos plataformas inteligentes y procesos colaborativos que permiten una gestión más ágil 
-        y efectiva del conocimiento dentro de las organizaciones.
+      <p class="text-lg text-dark/70 leading-relaxed">
+        La calidad profesional de los miembros de su organización —desde niveles iniciales hasta posiciones ejecutivas— 
+        determina la sustentabilidad del negocio. Nuestras soluciones digitales permiten construir un pipeline de liderazgo 
+        robusto, ágil y adaptado a los desafíos actuales y futuros.
       </p>
+
     </div>
   </section>
 
-  <Fragment slot="footer"><Footer /></Fragment>
+  <!-- IMAGEN DESTACADA SECUNDARIA -->
+  <section class="w-full h-[320px] md:h-[380px] lg:h-[450px] overflow-hidden mb-16">
+    <img 
+      src="/services/technology-wide.jpg" 
+      alt="Evaluación digital de talento"
+      class="w-full h-full object-cover"
+    />
+  </section>
+
+  <!-- ACORDEÓN COMPLETO -->
+  <section class="pb-20 bg-soft">
+    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+
+      <h2 class="text-3xl font-bold text-dark mb-10">Herramientas y Evaluaciones</h2>
+
+      <div class="space-y-4">
+
+        {tools.map((item, idx) => (
+          <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+
+            {/* Trigger */}
+            <button 
+              class="w-full text-left px-6 py-4 font-semibold text-dark flex justify-between items-center hover:bg-gray-50 transition accordion-trigger"
+              data-target={`panel-${idx}`}
+            >
+              {item.title}
+              <span class="text-xl text-dark/50">+</span>
+            </button>
+
+            { /* Panel */ }
+            <div
+              id={`panel-${idx}`}
+              class="hidden px-6 pb-6 text-dark/70 leading-relaxed accordion-panel"
+              set:html={item.content}
+            ></div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+    <!-- SCRIPT DEL ACORDEÓN -->
+    <script>
+      document.querySelectorAll('.accordion-trigger').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const panel = document.getElementById(btn.dataset.target);
+          const isOpen = !panel.classList.contains('hidden');
+
+          document.querySelectorAll('.accordion-panel').forEach(p => p.classList.add('hidden'));
+          document.querySelectorAll('.accordion-trigger span').forEach(s => s.textContent = '+');
+
+          if (!isOpen) {
+            panel.classList.remove('hidden');
+            btn.querySelector('span').textContent = '–';
+          }
+        });
+      });
+    </script>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+
 </BaseLayout>

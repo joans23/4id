@@ -1,11 +1,55 @@
-<footer class="bg-blueProfessional text-white py-8 text-center space-y-4">
-  <div class="flex justify-center gap-6 text-2xl">
-    <a href="https://www.linkedin.com/company/XXXX" target="_blank" class="hover:text-[var(--color-primary)]">🔗</a>
-    <a href="https://www.instagram.com/XXXX" target="_blank" class="hover:text-[var(--color-primary)]">📸</a>
-    <a href="https://www.facebook.com/XXXX" target="_blank" class="hover:text-[var(--color-primary)]">📘</a>
+<footer class="bg-white text-dark pt-16 pb-10 mt-20 border-t border-gray-200">
+  <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12">
+
+    <!-- LOGO & DESCRIPCIÓN -->
+    <div>
+      <img src="/logo.png" alt="i4D" class="h-12 mb-6" />
+
+      <p class="text-dark/70 leading-relaxed">
+        Impulsamos el desarrollo, el talento y la transformación organizacional a través de soluciones estratégicas y a medida.
+      </p>
+
+      <div class="flex gap-4 mt-6">
+        <a href="#" class="text-dark/60 hover:text-dark transition text-2xl">🔗</a>
+        <a href="#" class="text-dark/60 hover:text-dark transition text-2xl">📸</a>
+      </div>
+    </div>
+
+    <!-- MENÚ INSTITUCIONAL -->
+    <div>
+      <h3 class="text-lg font-semibold text-dark mb-4">Institucional</h3>
+      <ul class="space-y-3 text-dark/60">
+        <li><a href="/acerca-de" class="hover:text-dark transition">Acerca de</a></li>
+        <li><a href="/vision-mision-valores" class="hover:text-dark transition">Visión & Valores</a></li>
+        <li><a href="/talent-technologies" class="hover:text-dark transition">Talent Technologies</a></li>
+        <li><a href="/contacto" class="hover:text-dark transition">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICIOS -->
+    <div>
+      <h3 class="text-lg font-semibold text-dark mb-4">Servicios</h3>
+      <ul class="space-y-3 text-dark/60">
+        <li><a href="/servicios#talent-acquisition" class="hover:text-dark transition">Talent Acquisition</a></li>
+        <li><a href="/servicios#consultoria-organizacional" class="hover:text-dark transition">Consultoría Organizacional</a></li>
+        <li><a href="/servicios#management" class="hover:text-dark transition">Management & Transformation</a></li>
+        <li><a href="/servicios#technologies" class="hover:text-dark transition">Talent Technologies</a></li>
+      </ul>
+    </div>
+
+    <!-- CONTACTO -->
+    <div>
+      <h3 class="text-lg font-semibold text-dark mb-4">Contacto</h3>
+      <ul class="space-y-3 text-dark/60">
+        <li><span class="block">info@i4d-la.com</span></li>
+        <li><span class="block">Buenos Aires, Argentina</span></li>
+        <li><a href="/contacto" class="hover:text-dark transition">Formulario de contacto →</a></li>
+      </ul>
+    </div>
+
   </div>
 
-  <p class="text-sm opacity-80">
-    © {new Date().getFullYear()} i4D - Ideas for Development
-  </p>
+  <div class="border-t border-gray-200 mt-12 pt-6 text-center text-dark/50 text-sm">
+    © {new Date().getFullYear()} i4D - Ideas for Development. Todos los derechos reservados.
+  </div>
 </footer>

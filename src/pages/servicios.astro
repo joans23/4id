@@ -2,49 +2,236 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-
-const services = [
-  {
-    icon: "💡",
-    title: "Innovación & Estrategia",
-    desc: "Diseño de soluciones que potencian la transformación digital y organizacional."
-  },
-  {
-    icon: "👥",
-    title: "Gestión del Talento",
-    desc: "Desarrollamos capacidades y liderazgo para equipos de alto rendimiento."
-  },
-  {
-    icon: "⚙️",
-    title: "Tecnologías para el Desarrollo",
-    desc: "Implementación de herramientas que optimizan procesos y productividad."
-  }
-];
 ---
+
 <BaseLayout title="Servicios - i4D">
   <Fragment slot="header"><Header /></Fragment>
+  <!-- NAV LATERAL STICKY -->
+<section class="hidden lg:block fixed left-0 top-40 w-48 px-6">
+  <nav class="space-y-4 text-sm font-semibold text-dark/60">
 
-  <section class="py-24 bg-soft">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold text-dark mb-12" data-aos="fade-up">
-        Nuestros Servicios
-      </h2>
+    <a href="#talent-acquisition" class="block hover:text-[var(--color-primary)] transition">
+      • Talent Acquisition
+    </a>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        {services.map((s, i) => (
-          <div
-            class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition"
-            data-aos="fade-up"
-            data-aos-delay={i * 150}
-          >
-            <div class="text-6xl mb-6">{s.icon}</div>
-            <h3 class="text-2xl font-bold text-dark mb-4">{s.title}</h3>
-            <p class="text-medium leading-relaxed">{s.desc}</p>
+    <a href="#consultoria-organizacional" class="block hover:text-[var(--color-primary)] transition">
+      • Consultoría Organizacional
+    </a>
+
+    <a href="#management" class="block hover:text-[var(--color-primary)] transition">
+      • Management & Transformation
+    </a>
+
+    <a href="#talent-technologies" class="block hover:text-[var(--color-primary)] transition">
+      • Talent Technologies
+    </a>
+
+  </nav>
+</section>
+
+
+  <!-- HERO -->
+  <section class="py-24 bg-soft text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+      Nuestros Servicios
+    </h1>
+    <p class="text-lg text-dark/70 max-w-2xl mx-auto">
+      Soluciones estratégicas enfocadas en el desarrollo del talento, la cultura y la transformación organizacional.
+    </p>
+  </section>
+
+ <!-- CARDS PRINCIPALES DE SERVICIOS -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+
+    <div class="grid md:grid-cols-4 gap-10" data-aos="fade-up">
+
+      <!-- Card Base Reusable -->
+      {[
+        {
+          id: "talent-acquisition",
+          icon: "🔍",
+          title: "Talent Acquisition",
+          desc: "Selección estratégica alineada a cultura y competencias.",
+          img: "/services/talent.png"
+        },
+        {
+          id: "consultoria-organizacional",
+          icon: "🏢",
+          title: "Consultoría Organizacional",
+          desc: "Diagnóstico, estructura, cultura y procesos.",
+          img: "/services/consulting.png"
+        },
+        {
+          id: "management",
+          icon: "📈",
+          title: "Management & Transformation",
+          desc: "Desarrollo del liderazgo y transformación cultural.",
+          img: "/services/leadership.png"
+        },
+        {
+          id: "talent-technologies",
+          icon: "💡",
+          title: "Talent Technologies",
+          desc: "Tecnologías para evaluación y desarrollo del talento.",
+          img: "/services/technology.png"
+        }
+      ].map(s => (
+        <a href={`#${s.id}`} class="group block rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition">
+
+          <!-- Imagen -->
+          <div class="relative h-40 overflow-hidden">
+            <img src={s.img} 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
+
+            <!-- Overlay oscuro suave -->
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition"></div>
+
+            <!-- Icono -->
+            <div class="absolute bottom-3 left-3 text-3xl text-white drop-shadow-lg">
+              {s.icon}
+            </div>
           </div>
-        ))}
-      </div>
+
+          <!-- Contenido -->
+          <div class="p-6 bg-soft group-hover:bg-white transition">
+            <h3 class="font-bold text-xl mb-2 text-dark group-hover:text-[var(--color-primary)] transition">
+              {s.title}
+            </h3>
+            <p class="text-dark/60 text-sm">{s.desc}</p>
+          </div>
+
+        </a>
+      ))}
+
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- SECCIÓN 1: TALENT ACQUISITION -->
+  <section id="talent-acquisition" class="py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+
+      <h2 class="text-3xl font-bold text-dark mb-6">Talent Acquisition</h2>
+
+      <p class="text-lg text-dark/70 leading-relaxed mb-8">
+        En i4D lideramos cada búsqueda como un proyecto único, asegurando una selección precisa que responda al
+        matching <strong>cultura – equipo – puesto – persona</strong>. Con más de 30 años de experiencia,
+        aplicamos criterios de especialización por área para garantizar resultados consistentes y alineados al negocio.
+      </p>
+
+      <p class="text-lg text-dark/70 leading-relaxed">
+        Nuestro enfoque personalizado —desde la asesoría a empresas y candidatos, hasta el seguimiento posterior
+        a la contratación— fortalece las relaciones y asegura procesos respetuosos, transparentes y orientados al
+        valor humano.
+      </p>
+
     </div>
   </section>
+
+  <!-- SECCIÓN 2: CONSULTORÍA ORGANIZACIONAL -->
+<section id="consultoria-organizacional" class="py-24 bg-soft">
+  <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+
+    <h2 class="text-3xl font-bold text-dark mb-6">Consultoría Organizacional</h2>
+
+    <p class="text-lg text-dark/70 leading-relaxed mb-6">
+      En i4D trabajamos junto a nuestros clientes en equipos mixtos, compartiendo objetivos y aportando experiencia,
+      conocimiento sectorial y mejores prácticas.
+    </p>
+
+    <p class="text-lg text-dark/70 leading-relaxed mb-6">
+      Con un enfoque riguroso y orientado a resultados, aplicamos metodologías ágiles que permiten obtener avances
+      concretos dentro de plazos acordados, garantizando eficiencia y claridad en cada etapa del proceso.
+    </p>
+
+    <p class="text-lg text-dark/70 leading-relaxed mb-6">
+      Creemos que el conocimiento más valioso está dentro de cada organización. Nuestra misión es “pensar juntos” para
+      definir el camino adecuado, aportando modelos y marcos metodológicos que potencien las capacidades internas.
+    </p>
+
+    <p class="text-lg text-dark/70 leading-relaxed">
+      Cada proyecto incluye un plan de comunicación detallado y la definición de indicadores clave de gestión para lograr 
+      alineación, impacto y seguimiento efectivo.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- SECCIÓN 3: MANAGEMENT & TRANSFORMATION -->
+<section id="management" class="py-24 bg-white">
+  <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+
+    <h2 class="text-3xl font-bold text-dark mb-6">Management & Transformation</h2>
+
+    <p class="text-lg text-dark/70 leading-relaxed mb-6">
+      Impulsamos el desarrollo organizacional mediante soluciones que fortalecen las capacidades de liderazgo,
+      la gestión del cambio y la transformación cultural. Acompañamos a líderes y equipos en la adopción de nuevas 
+      formas de trabajo, maximizando su efectividad en contextos dinámicos y digitales.
+    </p>
+
+    <p class="text-lg text-dark/70 leading-relaxed mb-10">
+      Nuestro enfoque combina herramientas modernas, metodologías ágiles y prácticas de desarrollo humano que
+      permiten reorientar el comportamiento organizacional hacia las metas estratégicas del negocio.
+    </p>
+
+    <!-- Bullets -->
+    <ul class="space-y-3 text-dark/80 text-lg">
+      <li>• Programas de liderazgo y desarrollo de management</li>
+      <li>• Gestión del cambio organizacional</li>
+      <li>• Transformación cultural y digital</li>
+      <li>• Diseño organizacional y gestión del desempeño</li>
+      <li>• Coaching ejecutivo y de equipos</li>
+      <li>• Workshops de innovación, agilidad y mindset digital</li>
+      <li>• Soluciones a medida según necesidad del cliente</li>
+    </ul>
+
+  </div>
+</section>
+
+
+  <!-- SECCIÓN 4: TALENT TECHNOLOGIES -->
+  <section id="talent-technologies" class="py-24 bg-soft">
+    <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+
+      <h2 class="text-3xl font-bold text-dark mb-6">Talent Technologies</h2>
+
+      <p class="text-lg text-dark/70 leading-relaxed mb-6">
+        Integramos herramientas tecnológicas para evaluación, aprendizaje y desarrollo del talento, potenciando la
+        toma de decisiones estratégicas.
+      </p>
+
+      <p class="text-lg text-dark/70 leading-relaxed">
+        Implementamos soluciones que combinan innovación, practicidad y enfoque humano, acompañando la evolución
+        digital de las organizaciones.
+      </p>
+
+       <a href="/talent-technologies" class="text-[var(--color-primary)] font-semibold hover:underline">
+            Ver más →
+          </a>
+
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+<section class="py-24 bg-[var(--color-primary)] text-white text-center mt-20">
+  <h2 class="text-3xl md:text-4xl font-bold mb-4">
+    ¿Querés potenciar tu organización?
+  </h2>
+
+  <p class="text-lg text-white/90 max-w-2xl mx-auto mb-10">
+    Conversemos sobre tus desafíos y diseñemos juntos soluciones a medida.
+  </p>
+
+  <a href="/contacto"
+     class="inline-block bg-white text-[var(--color-primary)] px-10 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition">
+     Contactanos →
+  </a>
+</section>
+
 
   <Fragment slot="footer"><Footer /></Fragment>
 </BaseLayout>
