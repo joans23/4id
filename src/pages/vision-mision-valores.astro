@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Visión, Misión y Valores - i4D">
+  <Fragment slot="header"><Header /></Fragment>
+
+  <!-- HERO -->
+  <section class="py-24 bg-soft text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+      Visión, Misión y Valores
+    </h1>
+    <p class="text-lg text-dark/70 max-w-2xl mx-auto">
+      El propósito que guía nuestro trabajo y la forma en que acompañamos a las organizaciones.
+    </p>
+  </section>
+
+  <!-- VISIÓN -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-3xl text-center" data-aos="fade-up">
+
+      <h2 class="text-3xl font-bold text-dark mb-6">Nuestra Visión</h2>
+
+      <p class="text-lg text-dark/70 leading-relaxed">
+        Brindar una red de trabajo integrada por profesionales referentes en gestión organizacional
+        y talento humano, comprometidos con la investigación y la aplicación práctica del conocimiento.
+        Generamos soluciones diferenciales que agregan valor a la gestión de las personas
+        y al desempeño del negocio.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- MISIÓN -->
+  <section class="py-20 bg-soft">
+    <div class="container mx-auto px-6 max-w-3xl text-center" data-aos="fade-up">
+
+      <h2 class="text-3xl font-bold text-dark mb-6">Nuestra Misión</h2>
+
+      <p class="text-lg text-dark/70 leading-relaxed">
+        Ser aliados estratégicos de nuestros clientes, acompañando el logro de sus metas a través
+        del desarrollo de la cultura del trabajo, las capacidades y el potencial de las personas.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+
+      <h2 class="text-3xl font-bold text-dark text-center mb-16" data-aos="fade-up">
+        Nuestros Valores
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-10">
+
+        <div class="p-8 bg-soft rounded-xl shadow-sm text-center" data-aos="fade-up">
+          <div class="text-5xl mb-4">👂</div>
+          <h3 class="font-bold text-xl mb-2">Escucha & Comprensión</h3>
+          <p class="text-dark/70">Entendemos profundamente las necesidades reales de cada organización.</p>
+        </div>
+
+        <div class="p-8 bg-soft rounded-xl shadow-sm text-center" data-aos="fade-up" data-aos-delay="150">
+          <div class="text-5xl mb-4">🤝</div>
+          <h3 class="font-bold text-xl mb-2">Integridad</h3>
+          <p class="text-dark/70">Actuamos con ética, honestidad y coherencia profesional.</p>
+        </div>
+
+        <div class="p-8 bg-soft rounded-xl shadow-sm text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-5xl mb-4">🌿</div>
+          <h3 class="font-bold text-xl mb-2">Respeto</h3>
+          <p class="text-dark/70">Promovemos relaciones empáticas y equitativas, valorando las diferencias.</p>
+        </div>
+
+        <div class="p-8 bg-soft rounded-xl shadow-sm text-center" data-aos="fade-up" data-aos-delay="450">
+          <div class="text-5xl mb-4">⭐</div>
+          <h3 class="font-bold text-xl mb-2">Excelencia</h3>
+          <p class="text-dark/70">Apostamos a la innovación y a la impecabilidad en cada proyecto.</p>
+        </div>
+
+        <div class="p-8 bg-soft rounded-xl shadow-sm text-center" data-aos="fade-up" data-aos-delay="600">
+          <div class="text-5xl mb-4">📘</div>
+          <h3 class="font-bold text-xl mb-2">Responsabilidad</h3>
+          <p class="text-dark/70">Cumplimos lo que prometemos, con claridad y sentido de urgencia.</p>
+        </div>
+
+        <div class="p-8 bg-soft rounded-xl shadow-sm text-center" data-aos="fade-up" data-aos-delay="750">
+          <div class="text-5xl mb-4">👥</div>
+          <h3 class="font-bold text-xl mb-2">Grupo Humano</h3>
+          <p class="text-dark/70">Trabajamos en equipo, compartiendo conocimiento para aprender y progresar.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+
+</BaseLayout>

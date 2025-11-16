@@ -3,14 +3,17 @@ const menuItems = [
   { label: "Inicio", href: "/" },
   { label: "Acerca de", href: "/acerca-de" },
   { label: "Servicios", href: "/servicios" },
+   { label: "Visión & Valores", href: "/vision-mision-valores" }, 
   { label: "Talent Technologies", href: "/talent-technologies" },
   { label: "Contacto", href: "/contacto" },
 ];
 ---
 
-<header class="bg-white shadow-lg">
+<header id="main-header"
+  class="sticky top-0 z-50 bg-white bg-opacity-80 backdrop-blur-sm transition-all duration-300 shadow-sm">
+  
   <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-
+    
     <!-- Logo -->
     <a href="/">
       <img src="/logo.png" alt="i4D" class="h-10" />
@@ -41,11 +44,25 @@ const menuItems = [
   </nav>
 
   <script>
+    const header = document.getElementById("main-header");
     const btn = document.getElementById("mobile-menu-button");
     const menu = document.getElementById("mobile-menu");
 
+    // Mobile toggle
     btn.addEventListener("click", () => {
       menu.classList.toggle("hidden");
     });
+
+    // Scroll effect
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        header.classList.add("bg-opacity-100", "shadow-lg");
+        header.classList.remove("bg-opacity-80", "shadow-sm");
+      } else {
+        header.classList.add("bg-opacity-80", "shadow-sm");
+        header.classList.remove("bg-opacity-100", "shadow-lg");
+      }
+    });
   </script>
+
 </header>

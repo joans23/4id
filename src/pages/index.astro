@@ -12,22 +12,115 @@ import TeamSection from "../components/TeamSection.astro";
     <Header />
   </Fragment>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <HeroSection />
 
-  <!-- Sección introductoria -->
+
+  <!-- QUIÉNES SOMOS -->
   <section class="py-20 bg-white">
-    <div class="container mx-auto px-6 text-center"  data-aos="fade-up">
-      <h2 class="text-3xl font-bold text-dark mb-6">¿Qué hacemos?</h2>
-      <p class="text-lg max-w-3xl mx-auto text-medium">
-        Acompañamos a empresas y organizaciones a lograr una evolución estratégica del talento,
-        la tecnología y la gestión del cambio.
+    <div class="container mx-auto px-6 max-w-4xl text-center" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-dark mb-6">Quiénes somos</h2>
+
+      <p class="text-lg text-dark/70 leading-relaxed">
+        Somos una red de profesionales especializados en capital humano, con amplia experiencia regional liderando procesos de desarrollo organizacional, transformación cultural y gestión del talento.
+        Diseñamos soluciones a medida que generan impacto real en las personas y en los resultados del negocio.
       </p>
     </div>
   </section>
+
+
+  <!-- DIFERENCIALES -->
+  <section class="py-20 bg-soft">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-dark text-center mb-12" data-aos="fade-up">Nuestro diferencial</h2>
+
+      <div class="grid md:grid-cols-3 gap-10">
+
+        <div class="p-8 bg-white shadow rounded-xl text-center" data-aos="fade-up">
+          <div class="text-[var(--color-primary)] text-4xl mb-4">💼</div>
+          <h3 class="font-bold text-xl mb-3">Experiencia</h3>
+          <p class="text-dark/70">
+            Más de 20 años acompañando organizaciones en diversos sectores y mercados de LATAM.
+          </p>
+        </div>
+
+        <div class="p-8 bg-white shadow rounded-xl text-center" data-aos="fade-up" data-aos-delay="150">
+          <div class="text-[var(--color-primary)] text-4xl mb-4">🎯</div>
+          <h3 class="font-bold text-xl mb-3">Enfoque estratégico</h3>
+          <p class="text-dark/70">
+            Detectamos capacidades, estructuras y equipos necesarios para cada modelo de negocio.
+          </p>
+        </div>
+
+        <div class="p-8 bg-white shadow rounded-xl text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-[var(--color-primary)] text-4xl mb-4">⚡</div>
+          <h3 class="font-bold text-xl mb-3">Soluciones a medida</h3>
+          <p class="text-dark/70">
+            Diseñamos e implementamos intervenciones alineadas a tus metas estratégicas,
+            asegurando impacto y retorno.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SERVICIOS -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+
+      <h2 class="text-3xl font-bold text-dark text-center mb-12" data-aos="fade-up">
+        Nuestros servicios
+      </h2>
+
+      <div class="grid md:grid-cols-4 gap-10">
+
+        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md transition" data-aos="fade-up">
+          <div class="text-[var(--color-primary)] text-4xl mb-4">🔍</div>
+          <h3 class="font-bold text-xl mb-3">Talent Acquisition</h3>
+          <p class="text-dark/70">
+            Selección estratégica según cultura, valores y objetivos del negocio.
+          </p>
+        </div>
+
+        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md transition" data-aos="fade-up" data-aos-delay="150">
+          <div class="text-[var(--color-primary)] text-4xl mb-4">🏢</div>
+          <h3 class="font-bold text-xl mb-3">Consultoría Organizacional</h3>
+          <p class="text-dark/70">
+            Diagnóstico, estructura, cultura y procesos para mejorar la operación.
+          </p>
+        </div>
+
+        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md transition" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-[var(--color-primary)] text-4xl mb-4">📈</div>
+          <h3 class="font-bold text-xl mb-3">Management & Transformation</h3>
+          <p class="text-dark/70">
+            Desarrollo de liderazgo y transformación organizacional.
+          </p>
+        </div>
+
+        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md transition" data-aos="fade-up" data-aos-delay="450">
+          <div class="text-[var(--color-primary)] text-4xl mb-4">💡</div>
+          <h3 class="font-bold text-xl mb-3">Talent Technologies</h3>
+          <p class="text-dark/70">
+            Herramientas y tecnologías para desarrollo, evaluación y aprendizaje.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CLIENTES -->
   <ClientsSection />
+
+  <!-- EQUIPO -->
   <TeamSection />
+
   <Fragment slot="footer">
     <Footer />
   </Fragment>
+
 </BaseLayout>
