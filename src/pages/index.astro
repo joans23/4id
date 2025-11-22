@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import HeroSection from "../components/HeroSection.astro";
 import ClientsSection from "../components/ClientSection.astro";
 import TeamSection from "../components/TeamSection.astro";
+import clients from "../data/companies.json";
 ---
 
 <BaseLayout title="i4D - Ideas for Development">
@@ -136,7 +137,7 @@ import TeamSection from "../components/TeamSection.astro";
 
 
   <!-- CLIENTES -->
-  <ClientsSection />
+  <ClientsSection clients={clients} />
 
   <!-- EQUIPO -->
   <TeamSection />

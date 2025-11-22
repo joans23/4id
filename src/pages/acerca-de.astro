@@ -24,6 +24,9 @@ const team = [
   }
 ];
 ---
+<style>
+   @reference "tailwindcss";
+</style>
 
 <BaseLayout title="Acerca de - i4D">
   <Fragment slot="header"><Header /></Fragment>
@@ -41,7 +44,7 @@ const team = [
     <div class="container mx-auto px-6 max-w-4xl text-center" data-aos="fade-up">
 
       <p class="text-lg text-dark/75 leading-relaxed">
-        i4D es una red de profesionales especializados en la gestión del talento humano y el desarrollo organizacional. 
+        <span class="font-rounded">i4D</span> es una red de profesionales especializados en la gestión del talento humano y el desarrollo organizacional. 
         Estamos comprometidos con la investigación —tanto científica como aplicada— y con la creación de soluciones 
         que agregan valor a la gestión de las personas y al desempeño del negocio.
       </p>

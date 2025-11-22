@@ -1,17 +1,46 @@
-<section class="py-20 bg-white">
-  <div class="container mx-auto px-6 text-center">
+---
+import { Swiper, SwiperSlide, SwiperWrapper } from 'astro-swiper';
+import 'swiper/css';
+import 'swiper/css/autoplay';
 
-    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-12" data-aos="fade-up">
-      Empresas que confían en nosotros
-    </h2>
+const { clients } = Astro.props;
+---
 
-    <!-- Logos (podés reemplazar por los reales de tus clientes) -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 items-center">
-      <img data-aos="zoom-in" class="h-12 mx-auto opacity-60 hover:opacity-100 transition" src="https://via.placeholder.com/150x50?text=Logo+1" />
-      <img data-aos="zoom-in" class="h-12 mx-auto opacity-60 hover:opacity-100 transition" src="https://via.placeholder.com/150x50?text=Logo+2" />
-      <img data-aos="zoom-in" class="h-12 mx-auto opacity-60 hover:opacity-100 transition" src="https://via.placeholder.com/150x50?text=Logo+3" />
-      <img data-aos="zoom-in" class="h-12 mx-auto opacity-60 hover:opacity-100 transition" src="https://via.placeholder.com/150x50?text=Logo+4" />
-    </div>
+<style>
+   @reference "tailwindcss";
+  .logo-card{
+    @apply flex items-center justify-center bg-white rounded-xl shadow-sm p-6 transition transform hover:scale-105;
+  }
+  .logo-img{
+    @apply max-h-16 w-auto object-contain opacity-90 hover:opacity-100 transition;
+  }
+</style>
 
-  </div>
+<section class="w-full py-16">
+  <h2 class="text-2xl md:text-3xl font-bold text-dark text-center mb-10 tracking-tight">
+    Empresas que confiaron en nosotros
+  </h2>
+  <Swiper
+    options={{
+      spaceBetween:30,
+      slidesPerView:2,
+      autoplay:{delay:2800},
+      loop:true,
+      breakpoints:{
+              640:{ slidesPerView: 3},
+              768:{ slidesPerView: 4},
+              1024:{ slidesPerView:6}
+            }
+    }}>
+    <SwiperWrapper>
+ {clients.map((c)=>(
+    <SwiperSlide>
+      <div class="logo-card">
+        <img src={c.url} alt={c.name} class="logo-img"/>
+      </div>
+    </SwiperSlide>
+  ))}
+    </SwiperWrapper>
+ 
+  </Swiper>
 </section>
