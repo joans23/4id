@@ -1,5 +1,6 @@
 <form id="contact-form" class="max-w-lg mx-auto bg-white shadow-lg p-8 rounded-lg" data-aos="fade-up">
   <h2 class="text-3xl font-bold text-dark mb-6 text-center">Contáctanos</h2>
+<input type="text" name="empresa" id="empresa" class="hidden" autocomplete="off" tabindex="-1" />
 
   <label class="block mb-4">
     <span class="text-dark font-semibold">Nombre*</span>
@@ -24,6 +25,39 @@
     Enviar Mensaje
   </button>
 </form>
+<div id="toast" class="fixed top-5 right-5 z-50 hidden"></div>
+
+<style>
+  .toast-msg {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    animation: fadeIn 0.3s ease, fadeOut 0.3s ease 3s forwards;
+  }
+  .toast-success {
+    background: #F5A623;
+  }
+  .toast-error {
+    background: #d9534f;
+  }
+  @keyframes fadeIn { from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes fadeOut { to{opacity:0; transform:translateY(-10px);} }
+</style>
+
+<script>
+  function showToast(message, type = "success") {
+    const toast = document.getElementById("toast");
+    const div = document.createElement("div");
+    div.className = `toast-msg toast-${type}`;
+    div.textContent = message;
+    toast.appendChild(div);
+    toast.classList.remove("hidden");
+
+    setTimeout(() => div.remove(), 3500);
+  }
+</script>
 
 <!-- Modal -->
 <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -36,6 +70,15 @@
     </button>
   </div>
 </div>
+<script is:inline>
+  window.recaptchaReady = new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?render=6LcHLRgsAAAAAIiwShzMuCtHlySB_vvTrgkc8ZL_";
+    script.async = true;
+    script.onload = resolve;
+    document.head.appendChild(script);
+  });
+</script>
 
 <script>
   const form = document.getElementById("contact-form");
@@ -45,35 +88,38 @@
   const closeBtn = document.getElementById("modal-close");
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(form);
+  // Generar token reCAPTCHA v3
+  const token = await grecaptcha.execute("6LcHLRgsAAAAAIiwShzMuCtHlySB_vvTrgkc8ZL_", { action: "submit" });
 
-    try {
-      const res = await fetch("/sendmail.php", {
-        method: "POST",
-        body: formData
-      });
+  const formData = new FormData(form);
+  formData.append("recaptcha_token", token);
 
-      const text = await res.text();
+  try {
+    const res = await fetch("/sendmail.php", {
+      method: "POST",
+      body: formData,
+    });
 
-      if (text.includes("OK")) {
-        modalTitle.textContent = "✅ ¡Mensaje enviado!";
-        modalText.textContent = "Gracias por contactarte. Te responderemos a la brevedad.";
-      } else {
-        modalTitle.textContent = "⚠️ Error al enviar";
-        modalText.textContent = "Por favor, intentá nuevamente más tarde.";
-      }
-    } catch (error) {
-      modalTitle.textContent = "⚠️ Error de conexión";
-      modalText.textContent = "No se pudo contactar al servidor.";
+    const text = await res.text();
+
+    if (text.trim() === "OK") {
+      showToast("Mensaje enviado con éxito", "success");
+      form.reset();
+    } else {
+      showToast("Error al enviar. Intentá nuevamente.", "error");
     }
+  } catch (error) {
+    showToast("Error de conexión con el servidor.", "error");
+  }
+});
 
-    modal.classList.remove("hidden");
-  });
 
-  closeBtn.addEventListener("click", () => {
+
+ closeBtn.addEventListener("click", () => {
     modal.classList.add("hidden");
     form.reset();
   });
 </script>
+

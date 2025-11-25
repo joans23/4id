@@ -74,3 +74,5 @@ body.loaded {
   mask-repeat: no-repeat;
   mask-position: center;
 }
+
+#empresa { position:absolute; left:-9999px; opacity:0; }
