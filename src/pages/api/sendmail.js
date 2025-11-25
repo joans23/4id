@@ -1,8 +1,9 @@
-
 import nodemailer from "nodemailer";
 
+export const prerender = false;
+
 export async function POST({ request }) {
-  // Try to parse form-data
+  // Leer form-data
   let formData;
   try {
     formData = await request.formData();
@@ -14,38 +15,15 @@ export async function POST({ request }) {
   const nombre = formData.get("nombre");
   const email = formData.get("email");
   const mensaje = formData.get("mensaje");
-  const empresa = formData.get("empresa"); // honeypot
-  const token = formData.get("recaptcha_token");
+  const empresa = formData.get("empresa"); // HONEYPOT
 
-  // 1. Honeypot
+  // 1. Honeypot antibots
   if (empresa && empresa.trim() !== "") {
-    console.log("Honeypot triggered");
+    console.log("Honeypot triggered — bot blocked");
     return new Response("ERROR", { status: 400 });
   }
 
-  // 2. Validate reCAPTCHA v3
-  const SECRET_KEY = import.meta.env.RECAPTCHA_SECRET;
-  const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
-
-  const captchaRes = await fetch(verifyURL, { method: "POST" });
-  const captchaData = await captchaRes.json();
-
-  if (!captchaData.success || captchaData.score < 0.4) {
-    console.log("Recaptcha failed:", captchaData);
-    return new Response("ERROR", { status: 400 });
-  }
-
-//   // ❗ DESACTIVAR en local
-// if (import.meta.env.MODE !== "production") {
-//   console.log("⚠️ Recaptcha bypassed in development mode");
-// } else {
-//   if (!captchaData.success || captchaData.score < 0.4) {
-//     console.log("Recaptcha failed:", captchaData);
-//     return new Response("ERROR", { status: 400 });
-//   }
-// }
-
-  // 3. Nodemailer config
+  // 2. Configuración Nodemailer
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -56,11 +34,11 @@ export async function POST({ request }) {
     },
   });
 
-  // 4. Email body
+  // 3. Cuerpo del email
   const htmlBody = `
   <div style="font-family: Arial; background:#f7f7f7; padding:30px;">
     <div style="text-align:center;">
-      <img src="https://i4d-la.com/logo.png" style="max-width:200px; margin-bottom:20px;">
+      <img src="https://i4d-la.com/logo_orange.png" style="max-width:180px; margin-bottom:20px;" />
     </div>
 
     <div style="background:#fff; padding:25px; border-radius:10px;">
@@ -75,9 +53,8 @@ export async function POST({ request }) {
         Este mensaje fue enviado automáticamente desde el formulario de contacto de i4D.
       </p>
     </div>
-  </div>
-  `;
-
+  </div>`;
+  
   const mailOptions = {
     from: `"i4D Web" <${import.meta.env.EMAIL_USER}>`,
     to: import.meta.env.EMAIL_TO,
@@ -85,6 +62,7 @@ export async function POST({ request }) {
     html: htmlBody,
   };
 
+  // 4. Enviar el correo
   try {
     await transporter.sendMail(mailOptions);
     return new Response("OK", { status: 200 });

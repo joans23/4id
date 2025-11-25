@@ -1,35 +1,47 @@
----
-    const RECAPTCHA_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
-    const PUBLIC_RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
----
-
 <form id="contact-form" class="max-w-lg mx-auto bg-white shadow-lg p-8 rounded-lg" data-aos="fade-up">
   <h2 class="text-3xl font-bold text-dark mb-6 text-center">Contáctanos</h2>
-<input type="text" name="empresa" id="empresa" class="hidden" autocomplete="off" tabindex="-1" />
+
+  <!-- Honeypot -->
+  <input type="text" name="empresa" id="empresa" class="hidden" autocomplete="off" tabindex="-1" />
 
   <label class="block mb-4">
     <span class="text-dark font-semibold">Nombre*</span>
-    <input type="text" name="nombre" required
-      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]" />
+    <input 
+      type="text" 
+      name="nombre" 
+      required
+      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]" 
+    />
   </label>
 
   <label class="block mb-4">
     <span class="text-dark font-semibold">Email*</span>
-    <input type="email" name="email" required
-      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]" />
+    <input 
+      type="email" 
+      name="email" 
+      required
+      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]" 
+    />
   </label>
 
   <label class="block mb-6">
     <span class="text-dark font-semibold">Mensaje*</span>
-    <textarea name="mensaje" required rows="5"
-      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]"></textarea>
+    <textarea 
+      name="mensaje" 
+      required 
+      rows="5"
+      class="w-full border p-3 rounded mt-2 focus:outline-none focus:border-[var(--color-primary)]"
+    ></textarea>
   </label>
 
-  <button type="submit"
+  <button 
+    type="submit"
     class="bg-[var(--color-primary)] w-full text-white py-3 font-semibold rounded-lg hover:opacity-90 transition">
     Enviar Mensaje
   </button>
 </form>
+
+<!-- Toast container -->
 <div id="toast" class="fixed top-5 right-5 z-50 hidden"></div>
 
 <style>
@@ -47,8 +59,13 @@
   .toast-error {
     background: #d9534f;
   }
-  @keyframes fadeIn { from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
-  @keyframes fadeOut { to{opacity:0; transform:translateY(-10px);} }
+  @keyframes fadeIn { 
+    from { opacity:0; transform:translateY(-10px); } 
+    to { opacity:1; transform:translateY(0); } 
+  }
+  @keyframes fadeOut { 
+    to { opacity:0; transform:translateY(-10px); } 
+  }
 </style>
 
 <script>
@@ -62,76 +79,31 @@
 
     setTimeout(() => div.remove(), 3500);
   }
-</script>
 
-<!-- Modal -->
-<div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white rounded-xl shadow-xl p-8 text-center max-w-sm mx-4" data-aos="zoom-in">
-    <h3 id="modal-title" class="text-2xl font-bold mb-4"></h3>
-    <p id="modal-text" class="text-medium mb-6"></p>
-    <button id="modal-close"
-      class="bg-[var(--color-primary)] px-6 py-2 text-white font-semibold rounded-lg hover:opacity-90 transition">
-      Cerrar
-    </button>
-  </div>
-</div>
-<script is:inline>
-  window.recaptchaReady = new Promise((resolve) => {
-    const script = document.createElement("script");
-    const RECAPTCHA_KEY = "%RECAPTCHA_KEY%";
-    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_KEY}`;
-    script.async = true;
-    script.onload = resolve;
-    document.head.appendChild(script);
-  });
-</script>
-
-<script>
   const form = document.getElementById("contact-form");
-  const modal = document.getElementById("modal");
-  const modalTitle = document.getElementById("modal-title");
-  const modalText = document.getElementById("modal-text");
-  const closeBtn = document.getElementById("modal-close");
 
   form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  await window.recaptchaReady;
-  // Generar token reCAPTCHA v3
-  const PUBLIC_RECAPTCHA_SITE_KEY = "%PUBLIC_RECAPTCHA_SITE_KEY%";
-  const token = await grecaptcha.execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" });
+    e.preventDefault();
 
-  const formData = new FormData(form);
-  formData.append("recaptcha_token", token);
+    const formData = new FormData(form);
 
-  try {
-    const res = await fetch("/api/sendmail", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const res = await fetch("/api/sendmail", {
+        method: "POST",
+        body: formData,
+      });
 
-   if (!res.ok) {
-  showToast("Error al enviar. Revisá los datos o intentá nuevamente.", "error");
-  return;
-}
+      const text = await res.text();
 
-const text = await res.text();
+      if (res.ok && text.trim() === "OK") {
+        showToast("Mensaje enviado con éxito", "success");
+        form.reset();
+      } else {
+        showToast("Error al enviar. Intentá nuevamente.", "error");
+      }
 
-if (text.trim() === "OK") {
-  showToast("Mensaje enviado con éxito", "success");
-  form.reset();
-} else {
-  showToast("Error inesperado. Intentá nuevamente.", "error");
-}
-  } catch (error) {
-    showToast("Error de conexión con el servidor.", "error");
-  }
-});
-
-
-
- closeBtn.addEventListener("click", () => {
-    modal.classList.add("hidden");
-    form.reset();
+    } catch (error) {
+      showToast("Error de conexión con el servidor.", "error");
+    }
   });
 </script>
-
