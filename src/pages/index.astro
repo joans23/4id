@@ -68,50 +68,63 @@ import clients from "../data/companies.json";
 
 
   <!-- SERVICIOS -->
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-6">
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
 
-      <h2 class="text-3xl font-bold text-dark text-center mb-12" data-aos="fade-up">
-        Nuestros servicios
-      </h2>
+    <h2 class="text-3xl font-bold text-dark text-center mb-12" data-aos="fade-up">
+      Nuestros servicios
+    </h2>
 
-      <div class="grid md:grid-cols-4 gap-10">
+    <div class="grid md:grid-cols-4 gap-10">
 
-        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md transition" data-aos="fade-up">
+      <!-- Talent Acquisition -->
+      <a href="/servicios#talent-acquisition" class="block">
+        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md hover:-translate-y-1 transition" data-aos="fade-up">
           <div class="text-[var(--color-primary)] text-4xl mb-4">🔍</div>
           <h3 class="font-bold text-xl mb-3">Talent Acquisition</h3>
           <p class="text-dark/70">
             Selección estratégica según cultura, valores y objetivos del negocio.
           </p>
         </div>
+      </a>
 
-        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md transition" data-aos="fade-up" data-aos-delay="150">
+      <!-- Consultoría Organizacional -->
+      <a href="/servicios#consultoria-organizacional" class="block">
+        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md hover:-translate-y-1 transition" data-aos="fade-up" data-aos-delay="150">
           <div class="text-[var(--color-primary)] text-4xl mb-4">🏢</div>
           <h3 class="font-bold text-xl mb-3">Consultoría Organizacional</h3>
           <p class="text-dark/70">
             Diagnóstico, estructura, cultura y procesos para mejorar la operación.
           </p>
         </div>
+      </a>
 
-        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md transition" data-aos="fade-up" data-aos-delay="300">
+      <!-- Management & Transformation -->
+      <a href="/servicios#management" class="block">
+        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md hover:-translate-y-1 transition" data-aos="fade-up" data-aos-delay="300">
           <div class="text-[var(--color-primary)] text-4xl mb-4">📈</div>
           <h3 class="font-bold text-xl mb-3">Management & Transformation</h3>
           <p class="text-dark/70">
             Desarrollo de liderazgo y transformación organizacional.
           </p>
         </div>
+      </a>
 
-        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md transition" data-aos="fade-up" data-aos-delay="450">
+      <!-- Talent Technologies -->
+      <a href="/servicios#talent-technologies" class="block">
+        <div class="p-8 bg-soft shadow-sm rounded-xl text-center hover:shadow-md hover:-translate-y-1 transition" data-aos="fade-up" data-aos-delay="450">
           <div class="text-[var(--color-primary)] text-4xl mb-4">💡</div>
           <h3 class="font-bold text-xl mb-3">Talent Technologies</h3>
           <p class="text-dark/70">
             Herramientas y tecnologías para desarrollo, evaluación y aprendizaje.
           </p>
         </div>
+      </a>
 
-      </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- CTA: Acerca de Nosotros -->
 <section class="py-20 bg-soft">
@@ -126,7 +139,7 @@ import clients from "../data/companies.json";
     </p>
 
     <a href="/acerca-de"
-      class="inline-block bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] 
+      class="inline-block bg-[var(--color-primary)] hover:opacity-90 
              text-white font-semibold px-10 py-4 rounded-lg shadow-md transition">
       Ir a Acerca de
     </a>

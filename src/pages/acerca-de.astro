@@ -2,27 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-
-const team = [
-  {
-    name: "Jorge Contenti",
-    role: "Director",
-    linkedin: "https://www.linkedin.com/in/jorgecontenti/?originalSubdomain=ar",
-    img: "/team/jorge.jpg"  // opcional, después la cargás
-  },
-  {
-    name: "Sonia Weiss",
-    role: "Project Leader",
-    linkedin: "https://www.linkedin.com/in/sonia-weiss/",
-    img: "/team/sonia.jpg"
-  },
-  {
-    name: "Belén Herrera",
-    role: "Project Leader",
-    linkedin: "https://www.linkedin.com/in/bel%C3%A9n-herrera-535a671a/",
-    img: "/team/belen.jpg"
-  }
-];
+import TeamSection from "../components/TeamSection.astro";
 ---
 <style>
    @reference "tailwindcss";
@@ -52,33 +32,7 @@ const team = [
     </div>
   </section>
 
-  <!-- EQUIPO -->
-  <section class="py-24 bg-white">
-    <div class="container mx-auto px-6">
-
-      <h2 class="text-3xl font-bold text-dark text-center mb-12">Nuestro Equipo</h2>
-
-      <div class="grid md:grid-cols-3 gap-12">
-        {team.map((p) => (
-          <div class="bg-soft p-8 rounded-xl shadow-sm text-center hover:shadow-md transition" data-aos="fade-up">
-
-            <img src={p.img} alt={p.name} 
-                 class="w-32 h-32 mx-auto rounded-full object-cover mb-6 border border-gray-200"
-                 onerror="this.src='/placeholder-user.png'" />
-
-            <h3 class="text-xl font-bold text-dark">{p.name}</h3>
-            <p class="text-dark/60 mb-4">{p.role}</p>
-
-            <a href={p.linkedin} target="_blank" class="inline-block text-[var(--color-primary)] text-2xl hover:scale-110 transition">
-              🔗
-            </a>
-
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </section>
+  <TeamSection/>
 
   <Fragment slot="footer"><Footer /></Fragment>
 </BaseLayout>
