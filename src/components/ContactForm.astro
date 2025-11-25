@@ -1,3 +1,7 @@
+---
+    const RECAPTCHA_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+---
+
 <form id="contact-form" class="max-w-lg mx-auto bg-white shadow-lg p-8 rounded-lg" data-aos="fade-up">
   <h2 class="text-3xl font-bold text-dark mb-6 text-center">Contáctanos</h2>
 <input type="text" name="empresa" id="empresa" class="hidden" autocomplete="off" tabindex="-1" />
@@ -73,7 +77,8 @@
 <script is:inline>
   window.recaptchaReady = new Promise((resolve) => {
     const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?render=6LcHLRgsAAAAAIiwShzMuCtHlySB_vvTrgkc8ZL_";
+    const RECAPTCHA_KEY = "%RECAPTCHA_KEY%";
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_KEY}`;
     script.async = true;
     script.onload = resolve;
     document.head.appendChild(script);
@@ -89,27 +94,32 @@
 
   form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
+  await window.recaptchaReady;
   // Generar token reCAPTCHA v3
-  const token = await grecaptcha.execute("6LcHLRgsAAAAAIiwShzMuCtHlySB_vvTrgkc8ZL_", { action: "submit" });
+  const token = await grecaptcha.execute(import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" });
 
   const formData = new FormData(form);
   formData.append("recaptcha_token", token);
 
   try {
-    const res = await fetch("/sendmail.php", {
+    const res = await fetch("/api/sendmail", {
       method: "POST",
       body: formData,
     });
 
-    const text = await res.text();
+   if (!res.ok) {
+  showToast("Error al enviar. Revisá los datos o intentá nuevamente.", "error");
+  return;
+}
 
-    if (text.trim() === "OK") {
-      showToast("Mensaje enviado con éxito", "success");
-      form.reset();
-    } else {
-      showToast("Error al enviar. Intentá nuevamente.", "error");
-    }
+const text = await res.text();
+
+if (text.trim() === "OK") {
+  showToast("Mensaje enviado con éxito", "success");
+  form.reset();
+} else {
+  showToast("Error inesperado. Intentá nuevamente.", "error");
+}
   } catch (error) {
     showToast("Error de conexión con el servidor.", "error");
   }
