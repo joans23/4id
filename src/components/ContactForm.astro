@@ -1,5 +1,6 @@
 ---
     const RECAPTCHA_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+    const PUBLIC_RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY
 ---
 
 <form id="contact-form" class="max-w-lg mx-auto bg-white shadow-lg p-8 rounded-lg" data-aos="fade-up">
@@ -96,7 +97,8 @@
   e.preventDefault();
   await window.recaptchaReady;
   // Generar token reCAPTCHA v3
-  const token = await grecaptcha.execute(import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" });
+  const PUBLIC_RECAPTCHA_SITE_KEY = "%PUBLIC_RECAPTCHA_SITE_KEY%";
+  const token = await grecaptcha.execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: "submit" });
 
   const formData = new FormData(form);
   formData.append("recaptcha_token", token);
