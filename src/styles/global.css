@@ -14,8 +14,8 @@
 
 @font-face {
   font-family: "ArialRounded";
-      src:  url("/fonts/ArialRounded/arialroundedMTbold.woff2") format("woff2"),
-            url("/fonts/ArialRounded/arialroundedMTbold.woff") format("woff"),
+      src:  url("/fonts/ArialRounded/ArialRoundedMTBold.woff2") format("woff2"),
+            url("/fonts/ArialRounded/ArialRoundedMTBold.woff") format("woff"),
             url("/fonts/ArialRounded/arialroundedmtbold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
