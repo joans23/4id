@@ -30,28 +30,28 @@ import Footer from "../components/Footer.astro";
           icon: "🔍",
           title: "Talent Acquisition",
           desc: "Selección estratégica alineada a cultura y competencias.",
-          img: "/services/talent.png"
+          img: "/services/talentAcquisition.jpg"
         },
         {
           id: "consultoria-organizacional",
           icon: "🏢",
           title: "Consultoría Organizacional",
           desc: "Diagnóstico, estructura, cultura y procesos.",
-          img: "/services/consulting.png"
+          img: "/services/consulting.jpg"
         },
         {
           id: "management",
           icon: "📈",
           title: "Management & Transformation",
           desc: "Desarrollo del liderazgo y transformación cultural.",
-          img: "/services/leadership.png"
+          img: "/services/leadership.jpg"
         },
         {
           id: "talent-technologies",
           icon: "💡",
           title: "Talent Technologies",
           desc: "Tecnologías para evaluación y desarrollo del talento.",
-          img: "/services/technology.png"
+          img: "/services/technology.jpg"
         }
       ].map(s => (
         <a href={`#${s.id}`} class="group block rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition">
@@ -88,7 +88,7 @@ import Footer from "../components/Footer.astro";
 
 
   <!-- SECCIÓN 1: TALENT ACQUISITION -->
-  <section id="talent-acquisition" class="py-24 bg-white">
+  <section id="talent-acquisition" class="py-24 bg-[var(--color-bg-section)]">
     <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
 
       <h2 class="text-3xl font-bold text-dark mb-6">Talent Acquisition</h2>
@@ -139,7 +139,7 @@ import Footer from "../components/Footer.astro";
 
 
 <!-- SECCIÓN 3: MANAGEMENT & TRANSFORMATION -->
-<section id="management" class="py-24 bg-white">
+<section id="management" class="py-24 bg-[var(--color-bg-section)]">
   <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
 
     <h2 class="text-3xl font-bold text-dark mb-6">Management & Transformation</h2>

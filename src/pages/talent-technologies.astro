@@ -14,7 +14,7 @@ import tools from "../data/talent-technologies.json";
   <!-- BANNER FULL WIDTH SIN OVERLAY -->
   <section class="w-full h-[380px] md:h-[480px] lg:h-[520px] overflow-hidden">
     <img 
-      src="/services/technology-banner.jpg" 
+      src="/services/talent_technologies.jpg" 
       alt="Talent Technologies Banner"
       class="w-full h-full object-cover"
     />
@@ -42,12 +42,36 @@ import tools from "../data/talent-technologies.json";
   </section>
 
   <!-- IMAGEN DESTACADA SECUNDARIA -->
-  <section class="w-full h-[320px] md:h-[380px] lg:h-[450px] overflow-hidden mb-16">
-    <img 
-      src="/services/technology-wide.jpg" 
-      alt="Evaluación digital de talento"
-      class="w-full h-full object-cover"
-    />
+  <section class="w-full py-16 bg-gradient-to-r from-indigo-900 via-purple-600 to-pink-400 mb-10">
+   <div class=" max-w-7xl rounded-3xl
+              
+              px-6 py-12">
+     <div class="grid gap-6
+                grid-cols-1
+                sm:grid-cols-2
+                lg:grid-cols-3">
+
+      {[
+        '/section/talent_technologies_V.jpg',
+        '/section/talent_technologies_IV.jpg',
+        '/section/talent_technologies_III.jpg',
+        '/section/talent_technologies_VIII.jpg',
+        '/section/talent_technologies_VII.jpg',
+        '/section/talent_technologies_VI.jpg',
+      ].map((img) => (
+        <div class="overflow-hidden rounded-2xl bg-black/10">
+          <img
+            src={img}
+            alt=""
+            class="h-full w-full object-cover
+                   aspect-[16/9]
+                   transition-transform duration-300 hover:scale-105"
+          />
+        </div>
+      ))}
+
+    </div>
+   </div>
   </section>
 
   <!-- ACORDEÓN COMPLETO -->
@@ -63,7 +87,7 @@ import tools from "../data/talent-technologies.json";
 
             {/* Trigger */}
             <button 
-              class="w-full text-left px-6 py-4 font-semibold text-dark flex justify-between items-center hover:bg-gray-50 transition accordion-trigger"
+              class="w-full text-left px-6 py-4 font-semibold text-dark flex justify-between items-center hover:bg-gray-50 transition accordion-trigger cursor-pointer"
               data-target={`panel-${idx}`}
             >
               {item.title}

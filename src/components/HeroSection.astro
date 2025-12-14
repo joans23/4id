@@ -1,15 +1,36 @@
-<section class="bg-[var(--color-blueProfessional)] text-white py-24">
-  <div class="container mx-auto px-6" data-aos="fade-up">
-    <h1 class="text-4xl md:text-6xl font-bold mb-6 max-w-3xl">
-      Ideas que impulsan el desarrollo de tu organización
-    </h1>
+<section class="relative bg-[var(--color-blueProfessional)] text-white overflow-hidden">
+  <div
+    class="container mx-auto px-6 py-24
+           grid grid-cols-1 lg:grid-cols-2
+           items-center"
+  >
+    <!-- TEXTO -->
+    <div class="z-10">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 max-w-xl">
+        Ideas que impulsan el desarrollo de tu organización
+      </h1>
 
-    <p class="text-lg md:text-xl mb-8 max-w-2xl text-soft">
-      Potenciamos el talento y la innovación para transformar desafíos en oportunidades.
-    </p>
+      <p class="text-lg md:text-xl mb-8 max-w-lg text-soft">
+        Potenciamos el talento y la innovación para transformar desafíos en oportunidades.
+      </p>
 
-    <a href="/contacto" class="inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-8 rounded-lg hover:opacity-90 transition">
-      Contáctanos
-    </a>
+      <a
+        href="/contacto"
+        class="inline-block bg-[var(--color-primary)] text-white font-semibold
+               py-3 px-8 rounded-lg hover:opacity-90 transition"
+      >
+        Contáctanos
+      </a>
+    </div>
   </div>
+
+  <!-- IMAGEN ABSOLUTA -->
+  <img
+    src="/section/hero_team.png"
+    alt="Equipo trabajando"
+    class="hidden lg:block
+           absolute right-0 bottom-0
+           max-h-[520px]
+           w-auto object-contain"
+  />
 </section>

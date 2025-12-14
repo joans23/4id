@@ -10,6 +10,7 @@
   --color-dark: #1e1e1e;
   --color-dark-light: #2b2b2b;
   --font-rounded: "ArialRounded", sans-serif;
+  --color-bg-section: #d3d3d3;
 }
 
 @font-face {
