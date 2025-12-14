@@ -34,39 +34,41 @@
     ></textarea>
   </label>
 
-  <button 
-    type="submit"
-    class="bg-[var(--color-primary)] w-full text-white py-3 font-semibold rounded-lg hover:opacity-90 transition">
-    Enviar Mensaje
-  </button>
+  <button
+  type="submit"
+  id="submit-btn"
+  class="bg-[var(--color-primary)] w-full text-white py-3 font-semibold rounded-lg
+         hover:opacity-90 transition
+         flex items-center justify-center gap-2"
+>
+  <span class="btn-text">Enviar Mensaje</span>
+
+  <!-- Spinner -->
+  <svg
+    class="btn-spinner hidden w-5 h-5 animate-spin text-white"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      class="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      stroke-width="4"
+    ></circle>
+    <path
+      class="opacity-75"
+      fill="currentColor"
+      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+    ></path>
+  </svg>
+</button>
 </form>
 
 <!-- Toast container -->
-<div id="toast" class="fixed top-5 right-5 z-50 hidden"></div>
-
-<style>
-  .toast-msg {
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    color: white;
-    font-weight: bold;
-    animation: fadeIn 0.3s ease, fadeOut 0.3s ease 3s forwards;
-  }
-  .toast-success {
-    background: #F5A623;
-  }
-  .toast-error {
-    background: #d9534f;
-  }
-  @keyframes fadeIn { 
-    from { opacity:0; transform:translateY(-10px); } 
-    to { opacity:1; transform:translateY(0); } 
-  }
-  @keyframes fadeOut { 
-    to { opacity:0; transform:translateY(-10px); } 
-  }
-</style>
+<div id="toast" class="fixed p-10 top-5 right-5 z-50 hidden"></div>
 
 <script>
   function showToast(message, type = "success") {
@@ -77,8 +79,27 @@
     toast.appendChild(div);
     toast.classList.remove("hidden");
 
-    setTimeout(() => div.remove(), 3500);
+    setTimeout(() => div.remove(), 4000);
   }
+
+  const submitBtn = document.getElementById("submit-btn");
+
+const btnText = submitBtn.querySelector(".btn-text");
+const btnSpinner = submitBtn.querySelector(".btn-spinner");
+
+function setLoading(isLoading) {
+  if (isLoading) {
+    submitBtn.disabled = true;
+    submitBtn.classList.add("opacity-70", "cursor-not-allowed");
+    btnText.textContent = "Enviando...";
+    btnSpinner.classList.remove("hidden");
+  } else {
+    submitBtn.disabled = false;
+    submitBtn.classList.remove("opacity-70", "cursor-not-allowed");
+    btnText.textContent = "Enviar Mensaje";
+    btnSpinner.classList.add("hidden");
+  }
+}
 
   const form = document.getElementById("contact-form");
 
@@ -86,6 +107,8 @@
     e.preventDefault();
 
     const formData = new FormData(form);
+
+    setLoading(true);
 
     try {
       const res = await fetch("/api/sendmail", {
@@ -104,6 +127,10 @@
 
     } catch (error) {
       showToast("Error de conexión con el servidor.", "error");
+    } finally {
+      setTimeout(()=>{
+        setLoading(false);
+      },300);
     }
   });
 </script>

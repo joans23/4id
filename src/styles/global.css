@@ -77,3 +77,25 @@ body.loaded {
 }
 
 #empresa { position:absolute; left:-9999px; opacity:0; }
+
+.toast-msg {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    animation: fadeIn 0.3s ease, fadeOut 0.3s ease 3s forwards;
+  }
+  .toast-success {
+    background: #F5A623;
+  }
+  .toast-error {
+    background: #d9534f;
+  }
+  @keyframes fadeIn { 
+    from { opacity:0; transform:translateY(-10px); } 
+    to { opacity:1; transform:translateY(0); } 
+  }
+  @keyframes fadeOut { 
+    to { opacity:0; transform:translateY(-10px); } 
+  }
