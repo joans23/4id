@@ -1,11 +1,10 @@
-<section class="relative bg-[var(--color-blueProfessional)] text-white overflow-hidden">
+<section class="relative  text-white overflow-hidden">
   <div
-    class="container mx-auto px-6 py-24
-           grid grid-cols-1 lg:grid-cols-2
-           items-center"
+    class="container mx-auto w-100%
+           items-center gap-10  flex justify-between max-w-[100%] lg:max-w-[96rem]"
   >
     <!-- TEXTO -->
-    <div class="z-10">
+    <div class="z-10 bg-[var(--color-blueProfessional)] px-10 py-24 w-[100%] xl:w-[70%]">
       <h1 class="text-4xl md:text-6xl font-bold mb-6 max-w-xl">
         Ideas que impulsan el desarrollo de tu organización
       </h1>
@@ -22,15 +21,10 @@
         Contáctanos
       </a>
     </div>
-  </div>
+    <div class="bg-[url(/section/portada.png)] bg-cover w-[50%] hidden h-[-webkit-fill-available] sm:hidden lg:block xl:w-[30%]">
 
-  <!-- IMAGEN ABSOLUTA -->
-  <img
-    src="/section/hero_team.png"
-    alt="Equipo trabajando"
-    class="hidden lg:block
-           absolute right-0 bottom-0
-           max-h-[520px]
-           w-auto object-contain"
-  />
+    </div>
+
+  </div>
+  
 </section>

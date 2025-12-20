@@ -1,0 +1,218 @@
+---
+import posts from "../data/linkedin-posts.json";
+import {
+    Swiper,
+    SwiperButtonNext,
+    SwiperButtonPrev,
+    SwiperPagination,
+    SwiperSlide,
+    SwiperWrapper,
+} from "astro-swiper";
+import "swiper/css";
+import "swiper/css/autoplay";
+---
+
+<style>
+    /* Base buttons */
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 44px;
+        height: 44px;
+        border-radius: 9999px;
+
+        background: white;
+        color: var(--color-primary);
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+
+        transition: all 0.25s ease;
+    }
+
+    /* Remove default arrows */
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    /* Hover */
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+        background: var(--color-primary);
+        color: white;
+        transform: scale(1.05);
+    }
+
+    /* Active (touch feedback) */
+    .swiper-button-prev:active,
+    .swiper-button-next:active {
+        transform: scale(0.95);
+    }
+
+    /* Position tweak (mobile) */
+    .swiper-button-prev {
+        left: 8px;
+    }
+
+    .swiper-button-next {
+        right: 8px;
+    }
+
+    /* Hide on desktop */
+    @media (min-width: 768px) {
+        .swiper-button-prev,
+        .swiper-button-next {
+            display: none;
+        }
+    }
+</style>
+
+<section class="py-20 bg-soft">
+    <div class="container mx-auto px-6">
+        <h2
+            class="text-3xl font-bold text-dark text-center mb-12"
+            data-aos="fade-up"
+        >
+            Novedades
+        </h2>
+
+        <div class="hidden md:grid grid-cols-3 gap-10">
+            {
+                posts.map((post) => (
+                    <a
+                        href={post.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden group"
+                    >
+                        <div class="h-auto overflow-hidden relative bg-black">
+                            {post.mediaType === "video" ? (
+                                <video
+                                    src={post.media}
+                                    poster={post.poster}
+                                    muted
+                                    loop
+                                    playsinline
+                                    autoplay
+                                    preload="metadata"
+                                    class="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <img
+                                    src={post.media}
+                                    alt={post.title}
+                                    class="w-full h-full object-cover"
+                                />
+                            )}
+                        </div>
+
+                        <div class="p-6 flex flex-col h-full">
+                            <span class="text-sm text-dark/50 mb-2">
+                                {new Date(post.date).toLocaleDateString(
+                                    "es-AR",
+                                )}
+                            </span>
+
+                            <h3 class="font-bold text-lg text-dark mb-3">
+                                {post.title}
+                            </h3>
+
+                            <p class="text-dark/70 text-sm mb-6 flex-grow">
+                                {post.excerpt}
+                            </p>
+
+                            <div class="flex items-center justify-between mt-auto">
+                                <span class="text-[var(--color-primary)] font-semibold text-sm">
+                                    Ver publicación
+                                </span>
+
+                                <img
+                                    src="/icons/linkedin.svg"
+                                    class="h-5 opacity-70"
+                                />
+                            </div>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="md:hidden">
+            <Swiper
+                options={{
+                    spaceBetween: 20,
+                    slidesPerView: 1,
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
+                    loop: true,
+                }}
+            >
+                <SwiperWrapper>
+                    {
+                        posts.map((post) => (
+                            <SwiperSlide>
+                                <a
+                                    href={post.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="bg-white rounded-xl shadow-sm overflow-hidden block"
+                                >
+                                    <div class="auto overflow-hidden">
+                                        {post.mediaType === "video" ? (
+                                            <video
+                                                src={post.media}
+                                                poster={post.poster}
+                                                muted
+                                                loop
+                                                playsinline
+                                                autoplay
+                                                preload="metadata"
+                                                class="w-full h-full object-cover"
+                                            />
+                                        ) : (
+                                            <img
+                                                src={post.media}
+                                                alt={post.title}
+                                                class="w-full h-full object-cover"
+                                            />
+                                        )}
+                                    </div>
+
+                                    <div class="p-5">
+                                        <span class="text-xs text-dark/50">
+                                            {new Date(
+                                                post.date,
+                                            ).toLocaleDateString("es-AR")}
+                                        </span>
+
+                                        <h3 class="font-bold text-lg text-dark mt-2 mb-2">
+                                            {post.title}
+                                        </h3>
+
+                                        <p class="text-dark/70 text-sm">
+                                            {post.excerpt}
+                                        </p>
+
+                                        <div class="mt-4 text-[var(--color-primary)] font-semibold text-sm">
+                                            Ver publicación →
+                                        </div>
+                                    </div>
+                                </a>
+                            </SwiperSlide>
+                        ))
+                    }
+                </SwiperWrapper>
+                <SwiperButtonPrev />
+                <SwiperButtonNext />
+                <SwiperPagination />
+            </Swiper>
+        </div>
+    </div>
+</section>

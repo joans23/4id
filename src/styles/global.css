@@ -13,6 +13,46 @@
   --color-bg-section: #d3d3d3;
 }
 
+  /* Contenedor del paginador */
+    .swiper-pagination {
+        bottom: 0px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Bullet base */
+    .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        border-radius: 9999px;
+
+        background-color: rgba(0, 0, 0, 0.25);
+        opacity: 1;
+
+        transition: all 0.25s ease;
+    }
+
+    /* Bullet activo */
+    .swiper-pagination .swiper-pagination-bullet-active {
+        width: 15px;
+        height: 14px;
+        background-color: var(--color-primary);
+    }
+
+    /* Hover (desktop / accesible) */
+    .swiper-pagination-bullet:hover {
+        background-color: var(--color-primary);
+    }
+
+    /* Solo mobile */
+    @media (min-width: 768px) {
+        .swiper-pagination {
+            display: none;
+        }
+    }
+
 @font-face {
   font-family: "ArialRounded";
       src:  url("/fonts/ArialRounded/ArialRoundedMTBold.woff2") format("woff2"),
