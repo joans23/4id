@@ -104,6 +104,18 @@ body.loaded {
   mask-position: center;
 }
 
+.icon-mail::before{
+  content:'';
+  width: 30px;
+  height: 30px;
+  mask-image: url("/social/icono-mail.svg");
+  background-color: black;
+  display: inline-block;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
 .icon-whatsapp::before{
   content:'';
   width: 30px;
