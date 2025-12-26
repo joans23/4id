@@ -83,7 +83,7 @@ body.loaded {
 .icon-instagram::before{
   content:'';
   width: 30px;
-  height: 30px;
+  height: 38px;
   mask-image: url("/social/instagram.svg");
   background-color: black;
   display: inline-block;
@@ -95,7 +95,7 @@ body.loaded {
 .icon-linkedin::before{
   content:'';
   width: 30px;
-  height: 30px;
+  height: 38px;
   mask-image: url("/social/linkedin.svg");
   background-color: black;
   display: inline-block;
@@ -107,7 +107,7 @@ body.loaded {
 .icon-mail::before{
   content:'';
   width: 30px;
-  height: 30px;
+  height: 38px;
   mask-image: url("/social/icono-mail.svg");
   background-color: black;
   display: inline-block;
